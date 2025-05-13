@@ -1,0 +1,151 @@
+[general]
+live_config_reload = true
+
+[mouse]
+hide_when_typing = true
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[selection]
+save_to_clipboard = false
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[window]
+decorations = "buttonless"
+dynamic_padding = false
+opacity = 1
+startup_mode = "Windowed"
+
+[window.padding]
+x = 8
+y = 8
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[colors.bright]
+black = "#444b6a"
+blue = "#7da6ff"
+cyan = "#0db9d7"
+green = "#b9f27c"
+magenta = "#bb9af7"
+red = "#ff7a93"
+white = "#acb0d0"
+yellow = "#ff9e64"
+
+[colors.normal]
+black = "#32344a"
+blue = "#7aa2f7"
+cyan = "#449dab"
+green = "#9ece6a"
+magenta = "#ad8ee6"
+red = "#f7768e"
+white = "#787c99"
+yellow = "#e0af68"
+
+[colors.primary]
+background = "#1a1b26"
+foreground = "#a9b1d6"
+
+[cursor]
+style = "Block"
+unfocused_hollow = true
+blink_interval = 750
+thickness = 0.15
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 18
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014,"
+key = "Comma"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014%"
+key = "N"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0014g"
+key = "G"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014:"
+key = "Semicolon"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014K"
+key = "K"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = """
+:q
+"""
+key = "Q"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014\""
+key = "N"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014x"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "R"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014z"
+key = "Z"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0014c"
+key = "T"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "R"
+mods = "Command"
+
