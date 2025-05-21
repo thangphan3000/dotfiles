@@ -15,6 +15,7 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ 
+          pkgs.tree
           pkgs.awscli
           pkgs.neofetch
           pkgs.alacritty
@@ -30,7 +31,7 @@
         dock.autohide = true;
         screencapture.location = "~/Pictures/screenshots";
         NSGlobalDomain.AppleICUForce24HourTime = true;
-        NSGlobalDomain.AppleInterfaceStyle = "Dark";
+        # NSGlobalDomain.AppleInterfaceStyle = "Dark";
         NSGlobalDomain.KeyRepeat = 2;
       };
 

@@ -310,7 +310,8 @@ return require("lazy").setup({
 			local cmd = vim.cmd
 			cmd("syntax on")
 			cmd("set termguicolors")
-			cmd("colorscheme tokyonight")
+			-- cmd("colorscheme tokyonight")
+			cmd("colorscheme tokyonight-day")
     end
   },
 	{ "ryanoasis/vim-devicons" },
