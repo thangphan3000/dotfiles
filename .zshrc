@@ -10,6 +10,8 @@ bindkey "^N" down-history
 # ------------------------------- alias ------------------------------
 
 alias ls="ls --color"
+alias t="tmux"
+alias v="vagrant"
 alias d="podman"
 alias c="clear"
 alias g="git"

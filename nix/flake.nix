@@ -11,10 +11,10 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = { pkgs, config, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ 
+          pkgs.eza
+          pkgs.fish
           pkgs.tree
           pkgs.awscli
           pkgs.neofetch
@@ -28,10 +28,9 @@
       ];
 
       system.defaults = {
-        dock.autohide = true;
+        dock.autohide = false;
         screencapture.location = "~/Pictures/screenshots";
         NSGlobalDomain.AppleICUForce24HourTime = true;
-        # NSGlobalDomain.AppleInterfaceStyle = "Dark";
         NSGlobalDomain.KeyRepeat = 2;
       };
 
@@ -44,7 +43,7 @@
       nix.settings.experimental-features = "nix-command flakes";
 
       # Enable alternative shell support in nix-darwin.
-      programs.zsh.enable = true;
+      programs.fish.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
