@@ -174,4 +174,3 @@ mods = "Command"
 action = "ResetFontSize"
 key = "R"
 mods = "Command"
-
