@@ -13,6 +13,7 @@
     configuration = { pkgs, config, ... }: {
       environment.systemPackages =
         [ 
+          pkgs.k9s
           pkgs.ripgrep
           pkgs.eza
           pkgs.fish
