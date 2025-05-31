@@ -1,37 +1,90 @@
-# ---------------------- local utility functions ---------------------
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-_have() { type "$1" &>/dev/null; }
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-# ---------------------------- key binding ---------------------------
+if [ ! -d "$ZINIT_HOME" ]; then
+  mkdir -p "$(dirname $ZINIT_HOME)" 
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
 
-bindkey "^P" up-history
-bindkey "^N" down-history
+export XDG_CONFIG_HOME="$HOME/.config"
 
-# ------------------------------- alias ------------------------------
+# Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
 
-alias ls="ls --color"
-alias t="tmux"
-alias v="vagrant"
-alias d="podman"
-alias c="clear"
-alias g="git"
-alias gd="git diff"
-alias gs="git status"
-alias gc="git commit -m $1"
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
 
-set-editor() {
-	export EDITOR="$1"
-	alias vi="\$EDITOR"
+# Load completions
+autoload -U compinit && compinit
+
+is_had() { type "$1" &>/dev/null;  }
+
+set_editor() {
+    export EDITOR="$1"
+    alias vi="$EDITOR"
 }
 
-_have "vim" && set-editor vi
-_have "nvim" && set-editor nvim
+# History
+HISTFIL=~/.zsh_history
+HISTSIZE=5000
+SAVEHIST=5000
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
 
-PROMPT="[%F{yellow}%n%f@devops  %F{lightblue}%~%f%F{white}]%f$ "
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-export RABBITMQ_PASS="ComplexPass@*2002"
+# Keybinding
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Aliases
+alias ls="eza --icons -l -g"
+alias k="kubectl"
+alias c="clear"
+alias g="git"
+alias gs="git status"
+alias gd="git diff"
+alias gc="git commit -m $1"
+alias tn="tmux new -s $1"
+alias p="python"
+
+is_had "vim" && set_editor vi
+is_had "nvim" && set_editor nvim
+
+# Shell integaration
+eval "$(fzf --zsh)"
+
+# Environment variables
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-source <(fzf --zsh)
+# FZF
+export FZF_DEFAULT_OPTS="\
+--ansi \
+--border rounded \
+--color='16,bg+:-1,gutter:-1,prompt:5,pointer:5,marker:6,border:4,label:4,header:italic' \
+--marker=' ' \
+--no-info \
+--no-separator \
+--pointer='👉' \
+--reverse"
+
+export FZF_TMUX_OPTS="-p 55%,60%"
+
+export FZF_CTRL_R_OPTS="\
+--border-label=' history ' \
+--prompt='  '"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
