@@ -64,7 +64,8 @@ is_had "vim" && set_editor vi
 is_had "nvim" && set_editor nvim
 
 # Shell integaration
-eval "$(fzf --zsh)"
+is_had "zsh" && eval "$(fzf --zsh)"
+is_had "zoxide" && eval "$(zoxide init --cmd cd zsh)"
 
 # Environment variables
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"

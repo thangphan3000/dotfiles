@@ -17,6 +17,7 @@ declare -a BREW_PACKAGES=(
   'fzf'
   'lazygit'
   'git-delta'
+  'zoxide'
 )
 
 is_had() { type "$1" &>/dev/null; }
@@ -69,10 +70,10 @@ link_dotfiles() {
   rm -rf "$HOME/.zshrc"
 
   echo "Linking dotfiles"
-  ln -s "$(pwd)/.zshrc" ~/.zshrc
-  ln -s "$(pwd)/.tmux.conf" ~/.tmux.conf
   ln -s "$(pwd)/nvim" ~/.config/nvim
   ln -s "$(pwd)/alacritty" ~/.config/alacritty
+  ln -s "$(pwd)/.zshrc" ~/.zshrc
+  ln -s "$(pwd)/.tmux.conf" ~/.tmux.conf
 }
 
 setup_macos() {
