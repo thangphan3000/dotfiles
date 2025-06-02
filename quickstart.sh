@@ -18,6 +18,8 @@ declare -a BREW_PACKAGES=(
   'lazygit'
   'git-delta'
   'zoxide'
+  'neofetch'
+  'k9s'
 )
 
 is_had() { type "$1" &>/dev/null; }
@@ -65,12 +67,14 @@ install_homebrew_tools() {
 link_dotfiles() {
   echo "Removing existing configs..."
   rm -rf "$HOME/.config/nvim"
+  rm -rf "$HOME/.config/neofetch"
   rm -rf "$HOME/.config/alacritty"
   rm -rf "$HOME/.tmux.conf"
   rm -rf "$HOME/.zshrc"
 
   echo "Linking dotfiles"
   ln -s "$(pwd)/nvim" ~/.config/nvim
+  ln -s "$(pwd)/neofetch" ~/.config/neofetch
   ln -s "$(pwd)/alacritty" ~/.config/alacritty
   ln -s "$(pwd)/.zshrc" ~/.zshrc
   ln -s "$(pwd)/.tmux.conf" ~/.tmux.conf

@@ -68,8 +68,6 @@ return function()
 		capability = capabilities,
 	})
 
-	-- Bash
-	-- brew install shellcheck -> for linting(diagnostics)
 	nvim_lsp.bashls.setup({ handlers = handlers, on_attach = on_attach })
 
 	-- Golang
