@@ -20,6 +20,11 @@ declare -a BREW_PACKAGES=(
   'zoxide'
   'neofetch'
   'k9s'
+  'rbenv'
+  'postgresql@17'
+  'minikube'
+  'kafka'
+  'zookeeper'
 )
 
 is_had() { type "$1" &>/dev/null; }
@@ -29,8 +34,9 @@ install_homebrew() {
 
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
-  eval "$(/usr/local/bin/brew shellenv)"
+  echo >> /Users/thangphan/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 }
 
 install_homebrew_tools() {
@@ -73,6 +79,7 @@ link_dotfiles() {
   rm -rf "$HOME/.zshrc"
 
   echo "Linking dotfiles"
+  mkdir -p ~/.config
   ln -s "$(pwd)/nvim" ~/.config/nvim
   ln -s "$(pwd)/neofetch" ~/.config/neofetch
   ln -s "$(pwd)/alacritty" ~/.config/alacritty
