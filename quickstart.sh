@@ -26,6 +26,7 @@ declare -a BREW_PACKAGES=(
   'postgresql@17'
   'helm'
   'minikube'
+  'iproute2mac'
 )
 
 is_had() { type "$1" &>/dev/null; }
