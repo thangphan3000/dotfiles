@@ -4,6 +4,8 @@ declare -a BREW_APPS=(
   'alacritty'
   'obsidian'
   'font-jetbrains-mono-nerd-font'
+  'drawio'
+  'visual-studio-code'
 )
 
 declare -a BREW_PACKAGES=(
@@ -22,9 +24,8 @@ declare -a BREW_PACKAGES=(
   'k9s'
   'rbenv'
   'postgresql@17'
+  'helm'
   'minikube'
-  'kafka'
-  'zookeeper'
 )
 
 is_had() { type "$1" &>/dev/null; }

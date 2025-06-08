@@ -49,6 +49,13 @@ return require("lazy").setup({
 		build = ":TSUpdate",
 		config = require("plugins.treesitter"),
 	},
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+  },
 	{
 		"echasnovski/mini.surround",
 		opts = {

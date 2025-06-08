@@ -57,6 +57,11 @@ return function()
 		capabilities = capabilities,
 	})
 
+	nvim_lsp.ruby_lsp.setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
+
 	nvim_lsp.tailwindcss.setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
