@@ -15,7 +15,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 [window]
 decorations = "buttonless"
 dynamic_padding = false
-opacity = 1
+opacity = 0.6
 startup_mode = "Windowed"
 
 [window.padding]
@@ -26,54 +26,54 @@ y = 8
 draw_bold_text_with_bright_colors = false
 
 # Tokyo light
-[colors.primary]
-background = '#f0f0f5'  # A light, off-white background
-foreground = '#5c6370'  # A dark grey for good contrast against the light background
-
-[colors.normal]
-black   = '#282c34'    # The original dark background can become a dark text color
-red     = '#e06c75'    # Keeping the vibrant red
-green   = '#98c379'    # Keeping the lively green
-yellow  = '#d19a66'    # Keeping the warm yellow
-blue    = '#61afef'    # Keeping the bright blue
-magenta = '#c678dd'    # Keeping the vivid magenta
-cyan    = '#56b6c2'    # Keeping the crisp cyan
-white   = '#abb2bf'    # The original foreground can become a lighter text/accent color
-
-[colors.bright]
-black   = '#1c1f24'    # Even darker for strong emphasis
-red     = '#ff6c6b'    # More intense bright red
-green   = '#98be83'    # Brighter shade of green
-yellow  = '#e5c07b'    # More luminous yellow
-blue    = '#61afef'    # Consistent bright blue
-magenta = '#c678dd'    # Consistent bright magenta
-cyan    = '#0db9d7'    # A brighter, more electric cyan
-white   = '#dcdfe4'    # A very light grey for bright accents
-
-# Tokyo night
-# [colors.bright]
-# black = "#444b6a"
-# blue = "#7da6ff"
-# cyan = "#0db9d7"
-# green = "#b9f27c"
-# magenta = "#bb9af7"
-# red = "#ff7a93"
-# white = "#acb0d0"
-# yellow = "#ff9e64"
+# [colors.primary]
+# background = '#f0f0f5'  # A light, off-white background
+# foreground = '#5c6370'  # A dark grey for good contrast against the light background
 
 # [colors.normal]
-# black = "#32344a"
-# blue = "#7aa2f7"
-# cyan = "#449dab"
-# green = "#9ece6a"
-# magenta = "#ad8ee6"
-# red = "#f7768e"
-# white = "#787c99"
-# yellow = "#e0af68"
+# black   = '#282c34'    # The original dark background can become a dark text color
+# red     = '#e06c75'    # Keeping the vibrant red
+# green   = '#98c379'    # Keeping the lively green
+# yellow  = '#d19a66'    # Keeping the warm yellow
+# blue    = '#61afef'    # Keeping the bright blue
+# magenta = '#c678dd'    # Keeping the vivid magenta
+# cyan    = '#56b6c2'    # Keeping the crisp cyan
+# white   = '#abb2bf'    # The original foreground can become a lighter text/accent color
 
-# [colors.primary]
-# background = "#1a1b26"
-# foreground = "#a9b1d6"
+# [colors.bright]
+# black   = '#1c1f24'    # Even darker for strong emphasis
+# red     = '#ff6c6b'    # More intense bright red
+# green   = '#98be83'    # Brighter shade of green
+# yellow  = '#e5c07b'    # More luminous yellow
+# blue    = '#61afef'    # Consistent bright blue
+# magenta = '#c678dd'    # Consistent bright magenta
+# cyan    = '#0db9d7'    # A brighter, more electric cyan
+# white   = '#dcdfe4'    # A very light grey for bright accents
+
+# Tokyo night
+[colors.bright]
+black = "#444b6a"
+blue = "#7da6ff"
+cyan = "#0db9d7"
+green = "#b9f27c"
+magenta = "#bb9af7"
+red = "#ff7a93"
+white = "#acb0d0"
+yellow = "#ff9e64"
+
+[colors.normal]
+black = "#32344a"
+blue = "#7aa2f7"
+cyan = "#449dab"
+green = "#9ece6a"
+magenta = "#ad8ee6"
+red = "#f7768e"
+white = "#787c99"
+yellow = "#e0af68"
+
+[colors.primary]
+background = "#1a1b26"
+foreground = "#a9b1d6"
 
 [cursor]
 style = "Block"
