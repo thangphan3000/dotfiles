@@ -34,7 +34,7 @@ return function()
 		dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 	}
 	local function footer()
-		return "github.com/thangphan3000"
+		return "Never give up :)"
 	end
 
 	dashboard.section.footer.val = footer()
