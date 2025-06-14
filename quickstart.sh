@@ -6,6 +6,12 @@ declare -a BREW_APPS=(
   'font-jetbrains-mono-nerd-font'
   'drawio'
   'visual-studio-code'
+  # sketchybar icons
+  'sf-symbols'
+  'nikitabobko/tap/aerospace'
+   # tokyo-night-tmux requirements
+  'font-monaspace-nerd-font'
+  'font-noto-sans-symbols-2'
 )
 
 declare -a BREW_PACKAGES=(
@@ -25,8 +31,20 @@ declare -a BREW_PACKAGES=(
   'rbenv'
   'postgresql@17'
   'helm'
-  'minikube'
+  'k3d'
   'iproute2mac'
+  'infracost'
+  # Java runtime for Kafka use
+  'openjdk@17'
+  # tokyo-night-tmux requirements
+  'bash'
+  'bc'
+  'coreutils'
+  'gawk'
+  'gh'
+  'glab'
+  'gsed'
+  'jq'
 )
 
 is_had() { type "$1" &>/dev/null; }
