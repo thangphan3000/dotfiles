@@ -49,12 +49,25 @@ return require("lazy").setup({
 		build = ":TSUpdate",
 		config = require("plugins.treesitter"),
 	},
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    ---@module "ibl"
-    ---@type ibl.config
-    opts = {},
+  { 
+    'xiyaowong/transparent.nvim',
+    config = function ()
+      require("transparent").setup({
+        groups = {
+          'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+          'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+          'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+          'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+          'EndOfBuffer',
+        },
+        extra_groups = {
+          'NeoTreeNormal',
+          'NeoTreeNormalNC'
+        },
+        exclude_groups = {},
+        on_clear = function() end,
+      })
+    end
   },
 	{
 		"echasnovski/mini.surround",
@@ -317,8 +330,8 @@ return require("lazy").setup({
 			local cmd = vim.cmd
 			cmd("syntax on")
 			cmd("set termguicolors")
-			-- cmd("colorscheme tokyonight")
-			cmd("colorscheme tokyonight-day")
+			cmd("colorscheme tokyonight")
+			-- cmd("colorscheme tokyonight-day")
     end
   },
 	{ "ryanoasis/vim-devicons" },
