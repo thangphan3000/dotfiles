@@ -1,8 +1,9 @@
 local opt = vim.opt
 local g = vim.g
-local cmd = vim.cmd
+local augroup = vim.api.nvim_create_augroup -- Create/get autocommand group
+local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
-opt.laststatus = 0
+opt.laststatus = 3
 opt.clipboard = "unnamedplus"
 opt.shortmess:append("sI")
 opt.termguicolors = true
@@ -32,22 +33,26 @@ g.border_style = "none" ---@type "single"|"double"|"rounded"|"none"
 
 vim.wo.number = true
 
--- Load Helm Treesitter highlight when enter buffer
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+-- Load Helm Treesitter highlight
+autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*/templates/*.yaml,*/templates/*.yml,*/charts/*.yaml,*/charts/*.yml",
 	callback = function()
 		vim.bo.filetype = "helm"
 	end,
 })
 
--- Disable autocomment next line
-cmd([[autocmd FileType * set formatoptions-=ro]])
-
--- Display highlight yank action
-cmd([[ augroup highlight_yank]])
-cmd([[ autocmd!]])
--- cmd([[ autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({higroup = "Substitute", timeout = 250})]])
-cmd([[ autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 250})]])
-cmd([[ augroup END]])
+-- Highlight on yank
+augroup("YankHighlight", { clear = true })
+autocmd("TextYankPost", {
+  group = "YankHighlight",
+  callback = function()
+    vim.highlight.on_yank { higroup = "IncSearch", timeout = "1000" }
+  end,
+})
+-- Don't auto commenting new lines
+autocmd("BufEnter", {
+  pattern = "",
+  command = "set fo-=c fo-=r fo-=o",
+})
 
 return opts

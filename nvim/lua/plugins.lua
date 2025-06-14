@@ -69,6 +69,20 @@ return require("lazy").setup({
       })
     end
   },
+  {
+    "beauwilliams/statusline.lua",
+    dependencies = {
+      "nvim-lua/lsp-status.nvim",
+    },
+    config = function()
+      require("statusline").setup {
+        match_colorscheme = true,
+        tabline           = false,
+        lsp_diagnostics   = true,
+        ale_diagnostics   = false,
+      }
+    end,
+  },
 	{
 		"echasnovski/mini.surround",
 		opts = {
@@ -377,110 +391,120 @@ return require("lazy").setup({
 		end,
 	},
 	{ "folke/which-key.nvim", config = require("plugins.which-key") },
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = {
-			{ "folke/trouble.nvim" },
-		},
-		enabled = true,
-		event = "VeryLazy",
-		opts = function()
-			local lspIcons = require("utils.icons").lsp
+  { 
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    lazy = false,
+    after = "catppuccin",
+    config = function()
+      require("bufferline").setup {}
+    end,
+  },
+	-- {
+	-- 	"nvim-lualine/lualine.nvim",
+	-- 	dependencies = {
+	-- 		{ "folke/trouble.nvim" },
+	-- 	},
+	-- 	enabled = true,
+	-- 	event = "VeryLazy",
+	-- 	opts = function()
+	-- 		local lspIcons = require("utils.icons").lsp
 
-			local diagnostics = {
-				"diagnostics",
-				sources = { "nvim_diagnostic" },
-				sections = { "error", "warn", "info", "hint" },
-				symbols = {
-					error = lspIcons.error,
-					hint = lspIcons.hint,
-					info = lspIcons.info,
-					warn = lspIcons.warn,
-				},
-				colored = true,
-				update_in_insert = false,
-				always_visible = false,
-			}
+	-- 		local diagnostics = {
+	-- 			"diagnostics",
+	-- 			sources = { "nvim_diagnostic" },
+	-- 			sections = { "error", "warn", "info", "hint" },
+	-- 			symbols = {
+	-- 				error = lspIcons.error,
+	-- 				hint = lspIcons.hint,
+	-- 				info = lspIcons.info,
+	-- 				warn = lspIcons.warn,
+	-- 			},
+	-- 			colored = true,
+	-- 			update_in_insert = false,
+	-- 			always_visible = false,
+	-- 		}
 
-			local diff = {
-				"diff",
-				symbols = {
-					added = " ",
-					untracked = "󱀶 ",
-					modified = " ",
-					removed = " ",
-				},
-				colored = true,
-				always_visible = false,
-				source = function()
-					local gitsigns = vim.b.gitsigns_status_dict
-					if gitsigns then
-						return {
-							added = gitsigns.added,
-							modified = gitsigns.changed,
-							removed = gitsigns.removed,
-						}
-					end
-				end,
-			}
+	-- 		local diff = {
+	-- 			"diff",
+	-- 			symbols = {
+	-- 				added = " ",
+	-- 				untracked = "󱀶 ",
+	-- 				modified = " ",
+	-- 				removed = " ",
+	-- 			},
+	-- 			colored = true,
+	-- 			always_visible = false,
+	-- 			source = function()
+	-- 				local gitsigns = vim.b.gitsigns_status_dict
+	-- 				if gitsigns then
+	-- 					return {
+	-- 						added = gitsigns.added,
+	-- 						modified = gitsigns.changed,
+	-- 						removed = gitsigns.removed,
+	-- 					}
+	-- 				end
+	-- 			end,
+	-- 		}
 
-			local function show_macro_recording()
-				local recording_register = vim.fn.reg_recording()
-				if recording_register == "" then
-					return ""
-				else
-					return "Recording @" .. recording_register
-				end
-			end
+	-- 		local function show_macro_recording()
+	-- 			local recording_register = vim.fn.reg_recording()
+	-- 			if recording_register == "" then
+	-- 				return ""
+	-- 			else
+	-- 				return "Recording @" .. recording_register
+	-- 			end
+	-- 		end
 
-			return {
-				options = {
-					theme = "auto",
-					globalstatus = true,
-					disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
-					section_separators = { left = "", right = "" },
-					component_separators = { left = "", right = "" },
-				},
-				tabline = {
-					lualine_a = {},
-					lualine_b = {},
-					lualine_c = {
-						{
-							"filename",
-							file_status = true,
-							newfile_status = false,
-							-- 0: Just the filename
-							-- 1: Relative path
-							-- 2: Absolute path
-							-- 3: Absolute path, with tilde as the home directory
-							-- 4: Filename and parent dir, with tilde as the home directory
-							path = 1,
+	-- 		return {
+	-- 			options = {
+	-- 				theme = "auto",
+	-- 				globalstatus = true,
+	-- 				disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
+	-- 				section_separators = { left = "", right = "" },
+	-- 				component_separators = { left = "", right = "" },
+	-- 			},
+	-- 			tabline = {
+	-- 				lualine_a = {},
+	-- 				lualine_b = {},
+	-- 				lualine_c = {
+	-- 					{
+	-- 						"filename",
+	-- 						file_status = true,
+	-- 						newfile_status = false,
+	-- 						-- 0: Just the filename
+	-- 						-- 1: Relative path
+	-- 						-- 2: Absolute path
+	-- 						-- 3: Absolute path, with tilde as the home directory
+	-- 						-- 4: Filename and parent dir, with tilde as the home directory
+	-- 						path = 1,
 
-							symbols = {
-								modified = "[+]",
-								readonly = "🔒",
-								unnamed = "[No Name]",
-								newfile = "[New]",
-							},
-						},
-						diff,
-						diagnostics,
-					},
-					lualine_x = {},
-					lualine_y = {},
-					lualine_z = {},
-				},
-				sections = {
-					lualine_a = {},
-					lualine_b = {},
-					lualine_c = { { "macro-recording", fmt = show_macro_recording } },
-					lualine_x = {},
-					lualine_y = {},
-					lualine_z = {},
-				},
-			}
-		end,
-	},
+	-- 						symbols = {
+	-- 							modified = "[+]",
+	-- 							readonly = "🔒",
+	-- 							unnamed = "[No Name]",
+	-- 							newfile = "[New]",
+	-- 						},
+	-- 					},
+	-- 					diff,
+	-- 					diagnostics,
+	-- 				},
+	-- 				lualine_x = {},
+	-- 				lualine_y = {},
+	-- 				lualine_z = {},
+	-- 			},
+	-- 			sections = {
+	-- 				lualine_a = {},
+	-- 				lualine_b = {},
+	-- 				lualine_c = { { "macro-recording", fmt = show_macro_recording } },
+	-- 				lualine_x = {},
+	-- 				lualine_y = {},
+	-- 				lualine_z = {},
+	-- 			},
+	-- 		}
+	-- 	end,
+	-- },
 	{
 		"sindrets/diffview.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
