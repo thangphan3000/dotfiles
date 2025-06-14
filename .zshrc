@@ -54,7 +54,9 @@ alias ls="eza --icons -l -g"
 alias k="kubectl"
 alias c="clear"
 alias t="tmux"
+alias tf="terrform"
 alias d="podman"
+alias docker="podman"
 alias t="tmux"
 alias g="git"
 alias gs="git status"
@@ -84,7 +86,7 @@ export FZF_DEFAULT_OPTS="\
 --pointer='👉' \
 --reverse"
 
-export FZF_TMUX_OPTS="-p 55%,60%"
+export FZF_TMUX_OPTS="-p 80%,70%"
 
 export FZF_CTRL_R_OPTS="\
 --border-label=' history ' \
@@ -92,3 +94,10 @@ export FZF_CTRL_R_OPTS="\
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Added by `rbenv init` on Tue Jun  3 14:07:13 +07 2025
+eval "$(rbenv init - --no-rehash zsh)"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/postgresql@17/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/postgresql@17/include"
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
