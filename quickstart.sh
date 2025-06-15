@@ -5,10 +5,10 @@ declare -a BREW_APPS=(
   'obsidian'
   'font-jetbrains-mono-nerd-font'
   'drawio'
+  'nikitabobko/tap/aerospace'
   'visual-studio-code'
   # sketchybar icons
   'sf-symbols'
-  'nikitabobko/tap/aerospace'
    # tokyo-night-tmux requirements
   'font-monaspace-nerd-font'
   'font-noto-sans-symbols-2'
@@ -34,6 +34,7 @@ declare -a BREW_PACKAGES=(
   'k3d'
   'iproute2mac'
   'infracost'
+  'goose'
   # Java runtime for Kafka use
   'openjdk@17'
   # tokyo-night-tmux requirements
@@ -59,6 +60,31 @@ install_homebrew() {
   echo >> /Users/thangphan/.zprofile
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
   eval "$(/opt/homebrew/bin/brew shellenv)"
+}
+
+install_app_icons_font() {
+  echo "install sketchybar app icons font"
+  curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.5/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
+}
+
+install_sbarlua_api() {
+  echo "Install Sbarlua API"
+  (git clone https://github.com/FelixKratz/SbarLua.git /tmp/SbarLua && cd /tmp/SbarLua/ && make install && rm -rf /tmp/SbarLua/)
+}
+
+setup_sketchybar() {
+  FONT_PATH=$HOME/Library/Fonts/sketchybar-app-font.ttf
+  SBARLUA_API_PATH="$HOME/.local/share/sketchybar_lua/sketchybar.so" 
+
+  if ! -f "$SBARLUA_API_PATH" ]; then
+    install_sbarlua_api
+  fi
+
+  if ! -f "$FONT_PATH"; then
+    install_app_icons_font
+  fi
+
+  is_had "sketchybar" && brew services restart sketchybar 
 }
 
 install_homebrew_tools() {
@@ -90,6 +116,8 @@ install_homebrew_tools() {
       brew install "$package"
     fi
   done 
+
+  setup_sketchybar 
 }
 
 link_dotfiles() {
