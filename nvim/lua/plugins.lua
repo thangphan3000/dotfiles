@@ -44,31 +44,39 @@ return require("lazy").setup({
 		},
 		opts_extend = { "sources.default" },
 	},
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function ()
+      require("ibl").setup()
+    end
+  },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		config = require("plugins.treesitter"),
 	},
-  { 
-    'xiyaowong/transparent.nvim',
-    config = function ()
-      require("transparent").setup({
-        groups = {
-          'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
-          'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
-          'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
-          'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
-          'EndOfBuffer',
-        },
-        extra_groups = {
-          'NeoTreeNormal',
-          'NeoTreeNormalNC'
-        },
-        exclude_groups = {},
-        on_clear = function() end,
-      })
-    end
-  },
+  -- { 
+  --   'xiyaowong/transparent.nvim',
+  --   config = function ()
+  --     require("transparent").setup({
+  --       groups = {
+  --         'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+  --         'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+  --         'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+  --         'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+  --         'EndOfBuffer',
+  --       },
+  --       extra_groups = {
+  --         'NeoTreeNormal',
+  --         'NeoTreeNormalNC'
+  --       },
+  --       exclude_groups = {},
+  --       on_clear = function() end,
+  --     })
+  --   end
+  -- },
   {
     "beauwilliams/statusline.lua",
     dependencies = {

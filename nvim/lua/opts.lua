@@ -14,6 +14,7 @@ opt.cmdheight = 0
 opt.shell = "zsh"
 opt.wrap = false
 opt.scrolloff = 2
+opt.relativenumber = true
 
 -- Performance
 opt.history = 100
