@@ -72,7 +72,7 @@ local function addOrUpdateWorkspaceItem(workspaceName, monitorId, isSelected)
 				padding_left = 12,
 				padding_right = 12,
 				color = colors.grey,
-				highlight_color = colors.red,
+				highlight_color = colors.green,
 			},
 			label = {
 				padding_right = 12,
